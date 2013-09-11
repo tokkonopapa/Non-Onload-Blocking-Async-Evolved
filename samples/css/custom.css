@@ -1,0 +1,275 @@
+/* ==========================================================================
+   HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+   ========================================================================== */
+
+body {
+    box-sizing: border-box;
+    color:#373737;
+    background: #f2f2f2;
+    font-size: 18px;
+    font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color:#222;
+    font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+    letter-spacing: -1px;
+}
+
+.main article h1 { margin: 0 0 0.335em 0; }
+.main article h2 { margin: 0.83em 0 0.415em 0; }
+.main article h3 { margin: 1.00em 0 0.500em 0; }
+.main article h4 { margin: 1.33em 0 0.665em 0; }
+.main article h5 { margin: 1.67em 0 0.835em 0; }
+.main article h6 { margin: 2.33em 0 0.116em 0; }
+.main article p,
+.main article pre { margin: 0.5em 0 1em 0; }
+
+/* ===================
+    ALL: Custum Theme
+   =================== */
+
+.header-container,
+.footer-container,
+.main aside {
+    border-color: #2c3746;
+}
+.header-container,
+.footer-container {
+    background: #43546a;
+}
+.header-container {
+    background: -moz-linear-gradient(top, #2C3746, #43546A);
+    background: -webkit-linear-gradient(top, #2C3746, #43546A);
+    background: -ms-linear-gradient(top, #2C3746, #43546A);
+    background: -o-linear-gradient(top, #2C3746, #43546A);
+    background: linear-gradient(top, #2C3746, #43546A);
+}
+.footer-container {
+    background: -moz-linear-gradient(bottom, #2C3746, #43546A);
+    background: -webkit-linear-gradient(bottom, #2C3746, #43546A);
+    background: -ms-linear-gradient(bottom, #2C3746, #43546A);
+    background: -o-linear-gradient(bottom, #2C3746, #43546A);
+    background: linear-gradient(bottom, #2C3746, #43546A);
+}
+.footer-container h3 {
+    font-size: 1.0em;
+}
+
+.main aside {
+    background: none;
+}
+
+/* ==============
+    MOBILE: Menu
+   ============== */
+
+h1.title {
+    font-size: 1.75em;
+    line-height: 1.0em;
+}
+
+nav a {
+    background: none;
+}
+
+nav a:hover,
+nav a:visited {
+    color: white;
+}
+
+/* ==============
+    MOBILE: Main
+   ============== */
+
+.main aside {
+    color: black;
+}
+
+.main article h1 {
+    font-size: 1.7em;
+}
+
+.footer-container footer a {
+    color: white;
+    font-size: 0.9em;
+    text-decoration: none;
+}
+
+.footer-container footer a:hover,
+.footer-container footer a:visited {
+    color: white;
+}
+
+.footer-container footer a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+#site-navigation ul.nav-menu li a.current_page {
+    border-color: #c6e450;
+}
+#site-navigation {
+    text-align: center;
+}
+#site-navigation ul.nav-menu {
+    display: none;
+}
+#site-navigation ul.nav-menu.toggled-on {
+    display: block;
+}
+#site-navigation ul.nav-menu li a.current_page {
+    border-bottom: 5px solid #ffdb84;
+}
+.menu-toggle {
+    cursor: pointer;
+}
+.menu-toggle:hover {
+    text-decoration: none;
+}
+.menu-toggle:active,
+.menu-toggle.toggled-on {
+    border: none;
+}
+
+code pre.prettyprint {
+    line-height: 1.4em;
+}
+
+@media only screen and (min-width: 480px) {
+
+/* ====================
+    INTERMEDIATE: Menu
+   ==================== */
+
+    h1.title {
+        font-size: 2.0em;
+    }
+
+    nav a {
+        float: none;
+        width: auto;
+        margin: 0 1.7%;
+        padding: 15px 1% 10px 1%;
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 600px) {
+     nav a {
+        float: left;
+    }
+    .menu-toggle {
+        display: none;
+    }
+    #site-navigation ul.nav-menu {
+        display: block !important;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+/* ============
+    WIDE: Menu
+   ============ */
+
+    .title {
+        float: none;
+    }
+
+    nav {
+        float: right;
+        width: 100%;
+    }
+
+/* ============
+    WIDE: Main
+   ============ */
+
+    .primary {
+        float: left;
+        width: 60%;
+    }
+    .primary article {
+        width: 100%;
+    }
+    .secondary {
+        float: right;
+        width: 40%;
+    }
+    .secondary aside {
+        width: 75%;
+    }
+    .main aside {
+        clear: both;
+        margin-bottom: 2em;
+    }
+}
+
+/* Form in nav */
+nav label {
+    display: block;
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+nav input {
+    vertical-align: text-top;
+}
+
+/* Marks */
+.one-point {
+    width: 32px;
+    height: 16px;
+    background-position: 0 0;
+    display: inline-block;
+    vertical-align: text-top;
+    background-repeat: no-repeat;
+    background-image: url("../img/hand.png");
+}
+
+/* Popular posts */
+#popular-posts {
+    font-size: 14px;
+    line-height: 1.4 !important;
+}
+#popular-posts ul {
+    padding: 0 0 0 1em;
+}
+#popular-posts li {
+    margin: 0.75em 0;
+}
+#popular-posts span.hatena-users {
+    margin-left: 4px;
+}
+
+/* ==========================================================================
+   Navigation Timing
+   ========================================================================== */
+#timing-result {
+    height: 7em;
+    margin: 0.5em 0 0;
+}
+#timing-result ul {
+    height: 7em;
+    margin: 1em 0;
+    list-style-type: none;
+}
+#timing-result table {
+    text-align: right;
+}
+#timing-result th {
+    padding: 0;
+}
+#timing-result + p {
+    margin-top: 0;
+}

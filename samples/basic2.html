@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>Non Onload Blocking Async JS Evolved</title>
+        <script>var legacy = {}; legacy.navigationStart = new Date().getTime();</script>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <link rel="stylesheet" href="initializr/css/normalize.min.css">
+        <link rel="stylesheet" href="initializr/css/main.css">
+        <!--<link rel="stylesheet" href="initializr/css/main.nomediaq.css">-->
+        <!--[if lt IE 9]>
+            <link rel="stylesheet" href="initializr/css/ie-main.css" media="all">
+            <link rel="stylesheet" href="initializr/css/ie-print.css" media="print">
+        <![endif]-->
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/socials.css">
+
+        <!--[if lt IE 9]>
+            <script>"'article aside footer header nav section time'".replace(/\w+/g,function(n){document.createElement(n)});</script>
+        <![endif]-->
+    </head>
+    <body onload="legacy.domComplete = new Date().getTime(); report(legacy)">
+
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">Non onload blocking async JS evolved</h1>
+                <nav id="site-navigation">
+                    <h3 class="title menu-toggle">Menu</h3>
+                    <ul class="nav-menu">
+                        <li><a href="../index.html">Top</a></li>
+                        <li><a href="basic1.html">Conventional Page</a></li>
+                        <li><a href="basic2.html" class="current_page">Evolutionary Page</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+            <div class="primary">
+
+                <article>
+                    <header>
+                        <h1>Evolutionary Page</h1>
+                        <div class="socials socials-header clearfix">
+                            <div id="fb-root"></div>
+                            <!-- Twitter -->
+                            <div class="social social-h social-100">
+                                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://example.com/" data-text="tweet this entry" data-via="Who am I ?">Tweet</a>
+                            </div>
+                            <!-- Google plusone -->
+                            <div class="social social-h social-80">
+                                <div class="g-plusone" data-size="medium" data-href="http://example.com/"></div>
+                            </div>
+                            <!-- Pocket -->
+                            <div class="social social-h social-100">
+                                <a href="https://getpocket.com/save" class="pocket-btn" data-save-url="http://example.com/" data-pocket-count="horizontal" data-pocket-align="left">Pocket</a>
+                            </div>
+                            <!-- Facebook -->
+                            <div class="social social-h social-100">
+                                <div class="fb-like" data-href="http://example.com/" data-layout="button_count" data-send="false" data-width="120" data-show-faces="false"></div>
+                            </div>
+                        </div>
+                        <p>This page will load 3rd party script files through "frame-in-frame" method which is not so new technic but was experimentally implemented into the facebook SDK as <a href="http://www.facebook.com/note.php?note_id=10151176218703920" title="Under the Hood: The JavaScript SDK – Truly Asynchronous Loading">truly asynchronous loading</a>.</p>
+                    </header>
+                    <section>
+                        <h2>Navigation Timing</h2>
+                        <p>Here's the timing of <code>DOM ready</code> (<code>domContentLoadedEventEnd</code>) and <code>onload</code> (<code>domComplete</code>) mesured by <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html" title="W3C Editor's Draft - Navigation Timing">Navigation Timing</a> (see <a href="http://caniuse.com/nav-timing" title="Can I use Navigation Timing API">browser compatibility</a>).</p>
+                        <div id="timing-result"></div>
+                        <p>
+                            <span class="one-point"></span>
+                            <a href="javascript:(function()%20{if(!window.__profiler||window.__profiler.scriptLoaded!==true){var%20d=document,h=d.getElementsByTagName(%27head%27)[0],s=d.createElement(%27script%27),l=d.createElement(%27div%27),c=function(){if(l){d.body.removeChild(l);};window.__profiler=window.__profiler||new%20__Profiler();window.__profiler.init();__profiler.scriptLoaded=true;},t=new%20Date();s.type=%27text/javascript%27;l.style.cssText=%27z-index:999;position:fixed;top:10px;left:10px;display:inline;width:auto;font-size:14px;line-height:1.5em;font-family:Helvetica,Calibri,Arial,sans-serif;text-shadow:none;padding:3px%2010px%200;background:#FFFDF2;box-shadow:0%200%200%203px%20rgba(0,0,0,.25),0%200%205px%205px%20rgba(0,0,0,.25);%20border-radius:1px%27;l.innerHTML=%27Just%20a%20moment%27;s.src=%27http://kaaes.github.com/timing/profiler.js?%27+t.getTime();s.onload=c;s.onreadystatechange=function(){if(this.readyState==%27loaded%27){c()}};d.body.appendChild(l);h.appendChild(s);}%20else%20if(window.__profiler%20instanceof%20__Profiler){window.__profiler.init()}})();">See more details...</a>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Non onload blocking behavior</h2>
+                        <p> The 3rd party scripts are added to the queue that will be fetched immediately and excuted as soon as possible. It means "asynchronous loading and executing".</p>
+                        <p>And you can see the timing of <code>DOM ready</code> is almost equal to the timing of <code>onload</code> (if you are not unlucky).</p>
+                        <p>It means that the loading and excuting of 3rd party scripts doesn't block the onload for main contents, aka "non onload blocking".</p>
+                    </section>
+                    <footer>
+                        <h3>Is it good enough ?</h3>
+                        <p>Probably not. This page is too simple to evaluate efficacy of FiF. Visit a little bit <a href="typical-conventional.html">JS heavy page</a>.</p>
+                        <div class="socials socials-footer clearfix">
+                            <!-- Twitter -->
+                            <div class="social social-v social-60">
+                                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://example.com/" data-text="Tweet this entry" data-via="Who am I ?" data-count="vertical">Tweet</a>
+                            </div>
+                            <!-- Google plusone -->
+                            <div class="social social-v social-50">
+                                <div class="g-plusone" data-size="tall" data-href="http://example.com"></div>
+                            </div>
+                            <!-- Pocket -->
+                            <div class="social social-v social-60">
+                                <a href="https://getpocket.com/save" class="pocket-btn" data-save-url="http://example.com/" data-pocket-count="vertical" data-pocket-align="left">Pocket</a>
+                            </div>
+                            <!-- Facebook -->
+                            <div class="social social-v social-50">
+                                <div class="fb-like" data-href="http://example.com/" data-layout="box_count" data-send="false" data-width="70" data-show-faces="false"></div>
+                            </div>
+                        </div>
+                    </footer>
+                </article>
+                </div>
+
+                <div class="secondary">
+                <aside>
+                    <h3>aside</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.</p>
+                </aside>
+
+                <aside>
+                    <h3>aside</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.</p>
+                </aside>
+
+                <aside>
+                    <h3>aside</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.</p>
+                </aside>
+                </div>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <h3><a href="https://github.com/tokkonopapa">tokkonopapa on GitHub</a></h3>
+            </footer>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="initializr/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+        <script>$(function () { legacy.domContentLoadedEventEnd = new Date().getTime(); });</script>
+        <script src="initializr/js/main.js" async defer></script>
+        <script src="js/performance.js" async defer></script>
+
+        <!-- Google Analytics & Social buttons -->
+        <script src="js/script.js"></script>
+        <script>loadIframe('js/socials.js');</script>
+
+    </body>
+</html>

@@ -1,0 +1,47 @@
+.socials-header {
+    min-height: 40px;
+    margin-left: -0.25em;
+}
+.socials-footer {
+    min-height: 90px;
+    margin-left: -1em;
+}
+.social {
+    float: left;
+    position: relative;
+    display: inline-block;
+}
+.social-50 {
+    width: 50px !important;
+}
+.social-60 {
+    width: 60px !important;
+}
+.social-70 {
+    width: 70px !important;
+}
+.social-80 {
+    width: 80px !important;
+}
+.social-100 {
+    width: 100px !important;
+}
+.social-h {
+    margin: 0.25em;
+}
+.social-v {
+    margin: 1em;
+}
+a.hatena-bookmark-button,
+a.twitter-share-button,
+a.pocket-btn {
+    visibility: hidden;
+}
+
+/* google +1 appends iframe but still visible with firefox */
+iframe[name^="oauth2relay"],
+iframe[name*=" oauth2relay"] {
+    border-width: 0;
+    border-style: none;
+    display: none;
+}
