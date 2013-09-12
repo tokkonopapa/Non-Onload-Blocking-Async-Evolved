@@ -43,7 +43,7 @@ var win = parent ? parent.window : window;
 }(win, win.document));
 ```
 
-Fetch snippet.js with __frame-in-frame__ method that is described in [Stoyan Stefanov's post](http://www.phpied.com/non-onload-blocking-async-js/).
+Fetch snippet.js with __frame-in-frame__ method that is described in [this post](http://www.phpied.com/non-onload-blocking-async-js/) by Stoyan Stefanov.
 
 ```Javascript
 (function (url) {
@@ -53,10 +53,10 @@ Fetch snippet.js with __frame-in-frame__ method that is described in [Stoyan Ste
     var where = document.getElementsByTagName('script')[0];
     where.parentNode.insertBefore(iframe, where);
     var doc = iframe.contentWindow.document;
-    doc.open().write('&lt;body onload="' +
+    doc.open().write('<body onload="' +
         'var js = document.createElement(\'script\');' +
         'js.src = \'' + url + '\';' +
-        'document.body.appendChild(js);"&gt;');
+		'document.body.appendChild(js);">');
     doc.close();
 }('snippet.js'));
 ```
