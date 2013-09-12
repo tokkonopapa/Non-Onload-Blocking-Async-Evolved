@@ -31,7 +31,7 @@
         <h3>
 <a name="the-history" class="anchor" href="#the-history"><span class="octicon octicon-link"></span></a>The history</h3>
 
-<p>Scripts of major 3rd party such as Twitter, Facebook, Disqus and etc require "Async Pattern" using DOM injection method after <a href="http://googlecode.blogspot.jp/2009/12/google-analytics-launches-asynchronous.html" title="Google Analytics Launches Asynchronous Tracking - The official Google Code blog">Google Analytics launched asynchronous tracking</a> in 2009.</p>
+<p>Major 3rd party such as Twitter, Facebook, Disqus and etc are now requiring "Async Pattern" to load their scripts since <a href="http://googlecode.blogspot.jp/2009/12/google-analytics-launches-asynchronous.html" title="Google Analytics Launches Asynchronous Tracking - The official Google Code blog">Google Analytics had launched asynchronous tracking code</a> in 2009.</p>
 
 <p>Async pattern make a site speed fast because it doesn't block parsing and rendering the page. But it still blocks <code>window.onload</code> of the site.</p>
 
@@ -75,7 +75,7 @@ window.fbAsyncInit = function() {
 };
 </pre>
 
-<p>The problem is that we can't use this method unless a source of script embed this system at server side.</p>
+<p>Unfortunately, we can't use this method except for facebook unless the other 3rd parties implement this system into their scripts at their server side.</p>
 
 <h3>
 <a name="client-side-solution" class="anchor" href="#client-side-solution"><span class="octicon octicon-link"></span></a>Solution at client side</h3>
@@ -134,9 +134,9 @@ var win = parent ? parent.window : window;
 
 <p>Now we don't need <code>window.inDapIF = true;</code> in our new <abbr title="frame-in-frame">FIF</abbr> system. And add a fragment <code>#xfbml=1</code> to Facebook url instead of calling <code>FB.init(...)</code>.</p>
 
-<p>And fortunately, since variable <code>_gaq</code> is accessed through <code>window._gaq</code> in <a href="http://www.google-analytics.com/ga.js">ga.js</a></code> , you can move it into snippet.js if you want.</p>
+<p>And fortunately, since the variable <code>_gaq</code> is accessed through <code>window._gaq</code> in <a href="http://www.google-analytics.com/ga.js">ga.js</a></code> , you can move it into snippet.js if you want.</p>
 
-<p>Anyway, we can now load the 3rd party scripts in snippet.js asynchronously without blocking <code>window.onload</code> only for main contents.</p>
+<p>Anyway, using snippet.js, we can now load the 3rd party scripts asynchronously without blocking <code>window.onload</code> that should fire only for main contents.</p>
 
 <h3>
 <a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Demos</h3>
@@ -159,7 +159,7 @@ var win = parent ? parent.window : window;
 <h3>
 <a name="key-point-and-drawbacks" class="anchor" href="#key-points-and-drawbacks"><span class="octicon octicon-link"></span></a>Key point and drawbacks</h3>
 
-<p>Fetching 3rd party scripts directly in the FIF system similar to Stoyan's original code fails to get non onload blocking behavior.</p>
+<p>Fetching 3rd party scripts directly in the <abbr title="frame-in-frame">FIF</abbr> system similar to Stoyan's original code fails to get non onload blocking behavior.</p>
 
 <pre class="prettyprint lang-html linenums">
 doc.open().write('&lt;body onload="' +
@@ -171,11 +171,11 @@ doc.open().write('&lt;body onload="' +
 doc.close();
 </pre>
 
-<p>The key point here is creating a separate file like snippet.js. It means that the page need to spend additional HTTP request. And it also take some additional cost for creating iframe.</p>
+<p>The key point here is creating a separate file like snippet.js. It means that the page needs to spend additional HTTP request. It also take some additional cost for creating iframe.</p>
 
-<p>And at somethime especially in case of empty cache, a browser loses non onload blocking behavior. I do not know the reason and solution yet.</p>
+<p>And at somethime especially in case of empty cache, a browser loses its non onload blocking behavior. I do not know the reason and solution yet.</p>
 
-<p>So I think this kind of technique should be applied after some efforts to <a href="http://developer.yahoo.com/performance/rules.html#num_http" title="Best Practices for Speeding Up Your Web Site">make Fewer HTTP Requests</a>.</p>
+<p>Anyway, I think this kind of technique should be applied after some efforts to <a href="http://developer.yahoo.com/performance/rules.html#num_http" title="Best Practices for Speeding Up Your Web Site">make Fewer HTTP Requests</a>.</p>
 
 <h3>
 <a name="rivisiting-onload" class="anchor" href="#rivisiting-onload"><span class="octicon octicon-link"></span></a>Rivisiting onload</h3>
