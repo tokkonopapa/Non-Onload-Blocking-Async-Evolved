@@ -29,23 +29,112 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>The history</h3>
+<a name="the-history" class="anchor" href="#the-history"><span class="octicon octicon-link"></span></a>The history</h3>
 
 <p>Scripts of major 3rd party such as Twitter, Facebook, Disqus and etc require "Async Pattern" using DOM injection method after <a href="http://googlecode.blogspot.jp/2009/12/google-analytics-launches-asynchronous.html" title="Google Analytics Launches Asynchronous Tracking - The official Google Code blog">Google Analytics launched asynchronous tracking</a> in 2009.</p>
 
 <p>Async pattern make a site speed fast because it doesn't block parsing and rendering the page. But it still blocks <code>window.onload</code> of the site.</p>
 
-<p>Therefore, in 2012 <a href="https://twitter.com/stoyanstefanov">Stoyan Stefanov</a> made a <a href="http://www.phpied.com/non-onload-blocking-async-js/" title="Non-onload-blocking async JS  / Stoyan's phpied.com">simplified version</a> of <a href="https://github.com/meebo/embed-code" title="meebo/embed-code - GitHub">Meebo's non-onload-blocking embed code</a>, and <a href="http://www.facebook.com/note.php?note_id=10151176218703920" title="Under the Hood: The JavaScript SDK – Truly Asynchronous Loading">implemented experientally into facebook JavaScript SDK</a>.</p>
+<p>Therefore, in 2012 <a href="https://twitter.com/stoyanstefanov">Stoyan Stefanov</a> made a <a href="http://www.phpied.com/non-onload-blocking-async-js/" title="Non-onload-blocking async JS  / Stoyan's phpied.com">simplified version</a> of <a href="https://github.com/meebo/embed-code" title="meebo/embed-code - GitHub">Meebo's non-onload-blocking embed code</a>, and <a href="http://www.facebook.com/note.php?note_id=10151176218703920" title="Under the Hood: The JavaScript SDK – Truly Asynchronous Loading">implemented into facebook JavaScript SDK</a> experientally.</p>
 
-<pre class="prettyprint linenums"><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>He wrapped the SDK with <code>parent.window</code> if <code>window.inDapIF</code> is <code>true</code> like this:</p>
+
+<pre class="prettyprint lang-js linenums">
+try {
+    window.FB || (function (window) {
+        var self = window,
+            document = window.document;
+        ...
+    }).call({}, window.inDapIF ? parent.window : window);
+} catch (e) {
+    new Image().src = "<em>somthing error image</em>";
+}
+</pre>
+
+<p>And we can use this system, which name is "<strong>frame-in-frame</strong>", at the client side as <a href="http://jsbin.com/axibow/10/edit" title="fif test - JS Bin">this JS Bin</a> shows like this:</p>
+
+<pre class="prettyprint lang-js linenums">
+(function (url) {
+    var iframe = document.createElement('iframe');
+    (iframe.frameElement || iframe).style.cssText = 'display:none';
+    iframe.src = 'javascript:false';
+    var where = document.getElementsByTagName('script')[0];
+    where.parentNode.insertBefore(iframe, where);
+    var doc = iframe.contentWindow.document;
+    doc.open().write('&lt;body onload="' +
+        'window.inDapIF = true;' +
+        'var js = document.createElement(\'script\');' +
+        'js.src = \'' + url + '\';' +
+        'document.body.appendChild(js);"&gt;');
+    doc.close();
+}('//connect.facebook.net/en_US/all.js'));
+
+// async init once loading is done
+window.fbAsyncInit = function() {
+    FB.init({xfbml: true});
+};
+</pre>
+
+<p>The problem is that we can't use this method unless a source of script embed this system at server side.</p>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="client-side-solution" class="anchor" href="#client-side-solution"><span class="octicon octicon-link"></span></a>Solution at client side</h3>
 
-<p></p>
+<p>I found that we can use similar system at client side. Let's pick up Nicolas Gallagher's <a href="https://gist.github.com/necolas/1025811" title="Optimised async loading of cross-domain scripts">snippet.js</a>.</p>
+
+<pre class="prettyprint lang-js linenums">
+(function (doc, script) {
+    var js,
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function (url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Google Analytics
+    add(('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js', 'ga');
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    // Facebook SDK
+    add('//connect.facebook.net/en_US/all.js#xfbml=1', 'facebook-jssdk');
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+}(document, 'script'));
+</pre>
+
+<p>Let's wrap above code with this and save it as new snipet.js:</p>
+
+<pre class="prettyprint lang-js linenums">
+var win = parent ? parent.window : window;
+(function (window, document) {
+    // Original snipet.js here
+    ...
+}(win, win.document));
+</pre>
+
+<p>And put the code bellow somewhere near the <code>&lt;/body&gt;</code>.</p>
+
+<pre class="prettyprint lang-html linenums">
+&lt;script&gt;
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-XXXXX-X']);
+    _gaq.push(['_trackPageview']);
+
+    // Call snipet.js through "frame-in-frame" system
+    (function (url) {
+        var iframe = document.createElement('iframe');
+        ...
+        doc.close();
+    }('snipet.js'));
+&lt;/script&gt;
+</pre>
+
+<p>Fortunately, since variable <code>_gaq</code> is accessed through <code>window._gaq</code> in <a href="http://www.google-analytics.com/ga.js">ga.js</a></code> , we can move it into snipet.js.</p>
+
+<p>Anyway, we can now load the 3rd party scripts in snipet.js asynchronously without blocking <code>window.onload</code>.</p>
 
 <h3>
 <a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Demos</h3>
@@ -66,7 +155,7 @@ $ git checkout gh-pages
 </ul>
 
 <h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<a name="key-point-and-drawbacks" class="anchor" href="#key-points-and-drawbacks"><span class="octicon octicon-link"></span></a>Key point and drawbacks</h3>
 
 <p></p>
 
