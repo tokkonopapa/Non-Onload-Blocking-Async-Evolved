@@ -12,7 +12,7 @@ Prepare a small snippet like [Nicolas Gallagher's code](https://gist.github.com/
     var js,
         fjs = doc.getElementsByTagName(script)[0],
         add = function (url, id) {
-            if (doc.getElementById(id)) {
+            if (!doc.getElementById(id)) {
                 js = doc.createElement(script);
                 js.src = url;
                 id && (js.id = id);
@@ -21,6 +21,7 @@ Prepare a small snippet like [Nicolas Gallagher's code](https://gist.github.com/
         };
 
     // Google Analytics
+    win._gaq = [["_setAccount", "UA-XXXXX-X"],["_trackPageview"]];
     add(('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js', 'ga');
     // Google+ button
     add('https://apis.google.com/js/plusone.js');

@@ -1,28 +1,29 @@
-/*! This starter can be used in both parent and iframe */
 var win = parent ? parent.window : window;
 (function (window, document) {
 
-    (function (w, d, s) {
-        w._gaq = [
-            ["_setAccount", "UA-42366765-1"],
-            ["_trackPageview"]
-        ];
-        var j,
-            p = d.getElementsByTagName(s)[0],
-            a = function (u, i) {
-                if (!d.getElementById(i)) {
-                    j = d.createElement(s);
-                    j.src = u;
-                    i && (j.id = i);
-                    p.parentNode.insertBefore(j, p);
+    (function (win, doc, script) {
+        var js,
+            fjs = doc.getElementsByTagName(script)[0],
+            add = function (url, id) {
+                if (!doc.getElementById(id)) {
+                    js = doc.createElement(script);
+                    js.src = url;
+                    id && (js.id = id);
+                    fjs.parentNode.insertBefore(js, fjs);
                 }
             };
 
-        a(("https:" == location.protocol ? "//ssl" : "//www") + ".google-analytics.com/ga.js", "ga");
-        a("https://apis.google.com/js/plusone.js");
-        a("//connect.facebook.net/en_US/all.js#xfbml=1", "facebook-jssdk");
-        a("https://widgets.getpocket.com/v1/j/btn.js?v=1");
-        a("//platform.twitter.com/widgets.js", "twitter-wjs");
+        // Google Analytics
+        win._gaq = [["_setAccount", "UA-42366765-1"],["_trackPageview"]];
+        add(('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js', 'ga');
+        // Google+ button
+        add('https://apis.google.com/js/plusone.js');
+        // Facebook SDK
+        add("//connect.facebook.net/en_US/all.js#xfbml=1", "facebook-jssdk");
+        // Twitter SDK
+        add("//platform.twitter.com/widgets.js", "twitter-wjs");
+        // Pocket SDK
+        add("https://widgets.getpocket.com/v1/j/btn.js?v=1");
     }(window, document, 'script'));
 
 }(win, win.document));
