@@ -173,6 +173,8 @@ doc.close();
 
 <p>The key point here is creating a separate file like snipet.js. It means that the page need to spend additional HTTP request. And it also take some additional cost for creating iframe.</p>
 
+<p>And at somethime especially in case of empty cache, a browser loses non onload blocking behavior. I do not know the reason and solution yet.</p>
+
 <p>So I think this kind of technique should be applied after some efforts to <a href="http://developer.yahoo.com/performance/rules.html#num_http" title="Best Practices for Speeding Up Your Web Site">make Fewer HTTP Requests</a>.</p>
 
 <h3>
