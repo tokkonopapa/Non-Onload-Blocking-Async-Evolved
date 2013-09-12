@@ -53,7 +53,7 @@ try {
 
 <p>And we can use this system, which name is "<strong>frame-in-frame</strong>", at the client side as <a href="http://jsbin.com/axibow/10/edit" title="fif test - JS Bin">his JS Bin</a> shows like this:</p>
 
-<pre class="prettyprint lang-js linenums" id="fif-snipet">
+<pre class="prettyprint lang-js linenums" id="fif-snippet">
 (function (url) {
     var iframe = document.createElement('iframe');
     (iframe.frameElement || iframe).style.cssText = 'display:none';
@@ -105,12 +105,12 @@ window.fbAsyncInit = function() {
 }(document, 'script'));
 </pre>
 
-<p>Wrap above code with <code>parent.window</code> and save it as an updated snipet.js:</p>
+<p>Wrap above code with <code>parent.window</code> and save it as an updated snippet.js:</p>
 
 <pre class="prettyprint lang-js linenums">
 var win = parent ? parent.window : window;
 (function (window, document) {
-    // snipet.js here
+    // snippet.js here
     ...
 }(win, win.document));
 </pre>
@@ -123,20 +123,20 @@ var win = parent ? parent.window : window;
     _gaq.push(['_setAccount', 'UA-XXXXX-X']);
     _gaq.push(['_trackPageview']);
 
-    // Call snipet.js through "frame-in-frame" system
+    // Call snippet.js through "frame-in-frame" system
     (function (url) {
         var iframe = document.createElement('iframe');
         ...
         doc.close();
-    }('snipet.js'));
+    }('snippet.js'));
 &lt;/script&gt;
 </pre>
 
 <p>Now we don't need <code>window.inDapIF = true;</code> in our new <abbr title="frame-in-frame">FIF</abbr> system. And add a fragment <code>#xfbml=1</code> to Facebook url instead of calling <code>FB.init(...)</code>.</p>
 
-<p>And fortunately, since variable <code>_gaq</code> is accessed through <code>window._gaq</code> in <a href="http://www.google-analytics.com/ga.js">ga.js</a></code> , you can move it into snipet.js if you want.</p>
+<p>And fortunately, since variable <code>_gaq</code> is accessed through <code>window._gaq</code> in <a href="http://www.google-analytics.com/ga.js">ga.js</a></code> , you can move it into snippet.js if you want.</p>
 
-<p>Anyway, we can now load the 3rd party scripts in snipet.js asynchronously without blocking <code>window.onload</code> only for main contents.</p>
+<p>Anyway, we can now load the 3rd party scripts in snippet.js asynchronously without blocking <code>window.onload</code> only for main contents.</p>
 
 <h3>
 <a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Demos</h3>
@@ -171,7 +171,7 @@ doc.open().write('&lt;body onload="' +
 doc.close();
 </pre>
 
-<p>The key point here is creating a separate file like snipet.js. It means that the page need to spend additional HTTP request. And it also take some additional cost for creating iframe.</p>
+<p>The key point here is creating a separate file like snippet.js. It means that the page need to spend additional HTTP request. And it also take some additional cost for creating iframe.</p>
 
 <p>And at somethime especially in case of empty cache, a browser loses non onload blocking behavior. I do not know the reason and solution yet.</p>
 

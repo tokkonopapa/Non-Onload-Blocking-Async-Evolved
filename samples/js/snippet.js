@@ -7,21 +7,22 @@ var win = parent ? parent.window : window;
             ["_setAccount", "UA-42366765-1"],
             ["_trackPageview"]
         ];
-        var s, e = d.getElementsByTagName("script")[0],
-            a = function (u, f) {
-                if (!d.getElementById(f)) {
-                    s = d.createElement("script");
-                    s.src = u;
-                    s.async = !0;
-                    if (f) s.id = f;
-                    e.parentNode.insertBefore(s, e);
+        var j,
+            p = d.getElementsByTagName(s)[0],
+            a = function (u, i) {
+                if (!d.getElementById(i)) {
+                    j = d.createElement(s);
+                    j.src = u;
+                    i && (j.id = i);
+                    p.parentNode.insertBefore(j, p);
                 }
             };
+
         a(("https:" == location.protocol ? "//ssl" : "//www") + ".google-analytics.com/ga.js", "ga");
         a("https://apis.google.com/js/plusone.js");
         a("//connect.facebook.net/en_US/all.js#xfbml=1", "facebook-jssdk");
         a("https://widgets.getpocket.com/v1/j/btn.js?v=1");
         a("//platform.twitter.com/widgets.js", "twitter-wjs");
-    })(window, document);
+    }(window, document, 'script'));
 
-})(win, win.document);
+}(win, win.document));
