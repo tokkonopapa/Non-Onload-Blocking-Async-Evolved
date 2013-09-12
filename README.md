@@ -37,8 +37,9 @@ Wrap above code with `parent.window` and save it as snippet.js.
 
 ```javascript
 var win = parent ? parent.window : window;
-    // above codes here
 (function (window, document) {
+    // above codes here
+}(win, win.document));
 ```
 
 Fetch snippet.js with __frame-in-frame__ method that is described in [Stoyan Stefanov's post](http://www.phpied.com/non-onload-blocking-async-js/).
