@@ -162,15 +162,16 @@
         <!-- Google Analytics & Social buttons -->
         <script>
         (function(w,d) {
+            var c,e=d.createDocumentFragment(),f=d.getElementsByTagName("script")[0],
+            a=function(a,b){if(!d.getElementById(b)){c=d.createElement("script");
+            c.src=a;c.id=b||null;c.async=true;e.appendChild(c);}};
             w._gaq=[["_setAccount","UA-42366765-1"],["_trackPageview"]];
-            var s,e = d.getElementsByTagName("script")[0],
-            a=function(u,f){if(!d.getElementById(f)){s=d.createElement("script");
-            s.src=u;s.async=!0;if(f){s.id=f}e.parentNode.insertBefore(s,e)}};
             a(("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js","ga");
             a("https://apis.google.com/js/plusone.js");
             a("//connect.facebook.net/en_US/all.js#xfbml=1","facebook-jssdk");
             a("https://widgets.getpocket.com/v1/j/btn.js?v=1");
             a("//platform.twitter.com/widgets.js","twitter-wjs");
+            f.parentNode.insertBefore(e,f);
         })(window, document);
         </script>
 
@@ -199,7 +200,7 @@
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             }
             add('embed.js');
-            add('count.js');
+            //add('count.js');
         })();
         </script>
 
