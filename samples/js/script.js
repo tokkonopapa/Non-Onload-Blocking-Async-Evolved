@@ -46,6 +46,7 @@ function loadAsync(src, onload, onerror) {
 /* Load script into the iframe */
 
 function loadIframe(url, id) {
+//setTimeout(function () {
     var iframe = document.createElement('iframe');
     (iframe.frameElement || iframe).style.cssText = "display:none";
     iframe.src = "javascript:false";
@@ -62,6 +63,7 @@ function loadIframe(url, id) {
         'document.body.appendChild(js);' +
         '">');
     doc.close();
+//}, 0);
 }
 
 // /* If window.parent is assigned in the iframe, it blocks onload.
@@ -107,6 +109,8 @@ function loadIframe2(url, id) {
     doc.close();
 }
 // */
+
+/* Create iframe dynamically with styles for jsFiddle */
 
 function createFiddle(id, src, style) {
     // Keep params in iframe object
