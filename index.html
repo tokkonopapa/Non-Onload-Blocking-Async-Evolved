@@ -186,11 +186,11 @@ doc.close();
 
 <blockquote>Which metric is most important to give a good user experience?</blockquote>
 
-<p>A kind of this question is frequently asked. It's hard to mesure. For example, Google Analytics mesures <a href="https://support.google.com/analytics/answer/2383341?hl=en&ref_topic=1282106" title="Interpret Site Speed - Analytics Help">8 metrics</a> for site speed to analyze with various perspective, and WebPagetest defines <a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics" title="Metrics - WebPagetest Documentation">6 metrics</a> to mesure overoall site speed.</p>
+<p>A kind of this question is frequently asked. It's hard to mesure. For example, Google Analytics mesures <a href="https://support.google.com/analytics/answer/2383341?hl=en&ref_topic=1282106" title="Interpret Site Speed - Analytics Help">8 metrics</a> for site speed to analyze with various perspective, and WebPagetest defines <a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics" title="Metrics - WebPagetest Documentation">6 metrics</a> (<a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index" title="Speed Index - WebPagetest Documentation">Speed Index</a> is most interesting) to mesure overoall site speed.</p>
 
-<p>In these metrics, a timing of <code>window.onload</code> is still most important  since it's easy to mesure. <abbr title="Google Analytics">GA</abbr> reports "Avg. Page Load Time" using <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html" title="Navigation Timing">Navigation Timing</a>. It's calculated by <code>window.performance.loadEventStart - window.performance.navigationStart</code> which is nearly equal to <code>window.onload</code>.</p>
+<p>For these metrics, a timing of <code>window.onload</code> is still dominant because it's easy to mesure. For example, <abbr title="Google Analytics">GA</abbr> gets "Page Load Time" from <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html" title="Navigation Timing">Navigation Timing</a>  calculating <code>window.performance.loadEventStart - window.performance.navigationStart</code> which is nearly equal to <code>window.onload</code>.</p>
 
-<p>If a site is free from curse of 3rd party scripts which blocks onload, a timing of firing onload will be the best timing for a user to read the main contents. I think this'll be good for the metrics.</p>
+<p>In these days, onload has been less important than before. But if a site is free from curse of 3rd party scripts which blocks onload, a timing of firing onload will be the best timing for a user to read the main contents. So I think it's good time to focus to onload again as a metric.</p>
 
 <p>And we have a good chance to claim fair rating for the site speed to Google.</p>
 
