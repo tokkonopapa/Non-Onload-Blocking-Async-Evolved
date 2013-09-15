@@ -35,7 +35,7 @@
 
 <p>Async pattern make a site speed fast because it doesn't block parsing and rendering a page. But it still blocks <code>window.onload</code> of the site.</p>
 
-<p>This browser's behavior is reasonable or logically right because such requests to 3rd party scripts come from the page. But from the view point of site design, especially for SEO, this behavior is undesirable if those scripts are not for the main contents in a page.</p>
+<p>This browser's behavior is reasonable or logically right because such requests to 3rd party scripts come from the page. But from the view point of site design, especially for SEO, this behavior is undesirable if those scripts are not for the main contents.</p>
 
 <p>Therefore, in 2012 <a href="https://twitter.com/stoyanstefanov">Stoyan Stefanov</a> made a <a href="http://www.phpied.com/non-onload-blocking-async-js/" title="Non-onload-blocking async JS  / Stoyan's phpied.com">simplified version</a> of <a href="https://github.com/meebo/embed-code" title="meebo/embed-code - GitHub">Meebo's non-onload-blocking embed code</a>, and <a href="http://www.facebook.com/note.php?note_id=10151176218703920" title="Under the Hood: The JavaScript SDK – Truly Asynchronous Loading">implemented into facebook JavaScript SDK</a> experientally.</p>
 
