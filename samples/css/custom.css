@@ -264,6 +264,12 @@ nav input {
     height: 7em;
     margin: 1em 0;
     list-style-type: none;
+    padding-left: 10px;
+}
+@media only screen and (min-width: 480px) {
+    #timing-result ul {
+        padding-left: 40px;
+    }
 }
 #timing-result table {
     text-align: right;

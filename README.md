@@ -65,12 +65,7 @@ That's it!
 
 ### Demos
 
-- Basic pages:
-    + [Conventional page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/basic1.html)
-    + [Evolutionary page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/basic2.html)
-- Practical pages:
-    + [Conventional page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/practical1.html)
-    + [Evolutionary page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/practical2.html)
+- [GitHub Pages](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/)
 
 ### Related references
 
