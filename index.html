@@ -150,12 +150,14 @@ var win = parent ? parent.window : window;
 
     // Call snippet.js through "frame-in-frame" system
     (function (url) {
-        var iframe = document.createElement('iframe');
-        ...
-        doc.close();
+        setTimeout(function () {
+            // frame-in-frame here
+        }, 0);
     }('snippet.js'));
 &lt;/script&gt;
 </pre>
+
+<p>I added <code>setTimeout(function () {...}, 0)</code> since WebKit (Chrome 29 on Mac) seems to keep the context even with frame-in-frame under some complex situations.</p>
 
 <p>Now we don't need <code>window.inDapIF = true;</code> in our new <abbr title="frame-in-frame">FIF</abbr> system. Also we can add a fragment <code>#xfbml=1</code> to Facebook url instead of calling <code>FB.init(...)</code>.</p>
 

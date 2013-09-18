@@ -47,17 +47,19 @@ Fetch snippet.js with __frame-in-frame__ method that is described in [this post]
 
 ```Javascript
 (function (url) {
-    var iframe = document.createElement('iframe');
-    (iframe.frameElement || iframe).style.cssText = 'display:none';
-    iframe.src = 'javascript:false';
-    var where = document.getElementsByTagName('script')[0];
-    where.parentNode.insertBefore(iframe, where);
-    var doc = iframe.contentWindow.document;
-    doc.open().write('<body onload="' +
-        'var js = document.createElement(\'script\');' +
-        'js.src = \'' + url + '\';' +
-		'document.body.appendChild(js);">');
-    doc.close();
+    setTimeout(function () {
+        var iframe = document.createElement('iframe');
+        (iframe.frameElement || iframe).style.cssText = 'display:none';
+        iframe.src = 'javascript:false';
+        var where = document.getElementsByTagName('script')[0];
+        where.parentNode.insertBefore(iframe, where);
+        var doc = iframe.contentWindow.document;
+        doc.open().write('<body onload="' +
+            'var js = document.createElement(\'script\');' +
+            'js.src = \'' + url + '\';' +
+            'document.body.appendChild(js);">');
+        doc.close();
+    }, 0);
 }('snippet.js'));
 ```
 
@@ -66,6 +68,12 @@ That's it!
 ### Demos
 
 - [GitHub Pages](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/)
+- Basic pages:
+    + [Conventional page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/basic1.html)
+    + [Evolutionary page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/basic2.html)
+- Practical pages:
+    + [Conventional page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/practical1.html)
+    + [Evolutionary page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/practical2.html)
 
 ### Related references
 

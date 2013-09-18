@@ -25,7 +25,10 @@ h1, h2, h3, h4, h5, h6 {
 .main article h5 { margin: 1.67em 0 0.835em 0; }
 .main article h6 { margin: 2.33em 0 0.116em 0; }
 .main article p,
-.main article pre { margin: 0.5em 0 1em 0; }
+.main article pre {
+    margin: 0.5em 0 1em 0;
+    font-size: 95%;
+}
 
 /* ===================
     ALL: Custum Theme
@@ -138,7 +141,7 @@ nav a:visited {
     border: none;
 }
 
-code pre.prettyprint {
+pre.prettyprint {
     line-height: 1.4em;
 }
 
