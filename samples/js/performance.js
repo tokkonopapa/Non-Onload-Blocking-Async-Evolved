@@ -14,15 +14,16 @@ var report = function (legacy) {
         { timing: legacy };
 
     var check = function () {
+        if (window.performance.navigation == null) {
+            window.performance.navigation = { type: 3 };
+        }
         if (window.performance.timing.loadEventEnd == null) {
             window.performance.timing.loadEventEnd = new Date().getTime();
-            window.performance.navigation = {
-                type: 3
-            };
         }
         if (window.performance.timing.loadEventEnd > 0) {
             show();
         } else {
+            // window.onload fires a little bit before loadEventEnd is set
             setTimeout(check, 100);
         }
     }
@@ -41,7 +42,7 @@ var report = function (legacy) {
             name: 'domContentLoadedEventEnd',
             alias: 'DOM ready'
         }, {
-            name: 'domComplete',
+            name: 'loadEventEnd',
             alias: 'onload'
         }];
         var start = window.performance.timing.navigationStart;

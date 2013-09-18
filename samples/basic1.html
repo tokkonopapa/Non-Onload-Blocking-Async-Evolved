@@ -24,7 +24,7 @@
             <script>"'article aside footer header nav section time'".replace(/\w+/g,function(n){document.createElement(n)});</script>
         <![endif]-->
     </head>
-    <body onload="legacy.domComplete = new Date().getTime(); report(legacy)">
+    <body onload="legacy.loadEventEnd = new Date().getTime(); report(legacy)">
 
         <div class="header-container">
             <header class="wrapper clearfix">
@@ -70,7 +70,7 @@
                     </header>
                     <section>
                         <h2>Navigation Timing</h2>
-                       <p>Here's the timing of <code>DOM ready</code> (<code>domContentLoadedEventEnd</code>) and <code>window.onload</code> (<code>domComplete</code>) mesured by <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html" title="W3C Editor's Draft - Navigation Timing">Navigation Timing</a> (see <a href="http://caniuse.com/nav-timing" title="Can I use Navigation Timing API">browser compatibility</a>).</p>
+                       <p>Here's the timing of <code>DOM ready</code> (&#8786;<code>domContentLoadedEventEnd</code>) and <code>window.onload</code> (&#8786;<code>loadEventEnd</code>) mesured by <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html" title="W3C Editor's Draft - Navigation Timing">Navigation Timing</a> (see <a href="http://caniuse.com/nav-timing" title="Can I use Navigation Timing API">browser compatibility</a>).</p>
                         <div id="timing-result"></div>
                         <p>
                             <span class="one-point"></span>
