@@ -14,7 +14,7 @@ function startOnload(callback) {
     }
 }
 
-/* Start script at DOM ready */
+/* Start script at DOM ready using jQuery */
 
 function startReady(callback) {
     var args = ([].slice.call(arguments)).slice(1);
@@ -39,43 +39,43 @@ function loadAsync(src, onload, onerror) {
             if (this.onload) this.onload();
         }
     };
-    document.body.appendChild(script);
-//  document.getElementsByTagName('head')[0].appendChild(script);
-}
-
-/* Load script into the iframe */
-
-function loadIframe(url, id) {
-//setTimeout(function () {
-    var iframe = document.createElement('iframe');
-    (iframe.frameElement || iframe).style.cssText = "display:none";
-    iframe.src = "javascript:false";
 //  var where = document.getElementsByTagName('script')[0];
 //  where.parentNode.insertBefore(iframe, where);
-    document.body.appendChild(iframe);
-    var doc = (iframe.contentWindow.document || iframe.contentDocument);
-    doc.open().write('<body onload="' +
-        'var js = document.createElement(\'script\');' +
-        'js.type = \'text/javascript\';' +
-        'js.async = true;' +
-        (id ? 'js.id = \'' + id + '\';' : '') +
-        'js.src = \'' + url + '\';' +
-        'document.body.appendChild(js);' +
-        '">');
-    doc.close();
-//}, 0);
+//  document.getElementsByTagName('head')[0].appendChild(script);
+    document.body.appendChild(script);
 }
 
-// /* If window.parent is assigned in the iframe, it blocks onload.
-// Start from the iframe with current context ... it blocks onload!
+/* Load script into an iframe (frame-in-frame) */
 
-function startIframe(script) {
+function loadIframe(url, id) {
+    setTimeout(function () {
+        var iframe = document.createElement('iframe');
+        (iframe.frameElement || iframe).style.cssText = "display:none";
+        iframe.src = "javascript:false";
+        var where = document.getElementsByTagName('script')[0];
+        where.parentNode.insertBefore(iframe, where);
+        var doc = (iframe.contentWindow.document || iframe.contentDocument);
+        doc.open().write('<body onload="' +
+            'var js = document.createElement(\'script\');' +
+            'js.type = \'text/javascript\';' +
+            'js.async = true;' +
+            (id ? 'js.id = \'' + id + '\';' : '') +
+            'js.src = \'' + url + '\';' +
+            'document.body.appendChild(js);' +
+            '">');
+        doc.close();
+    }, 0);
+}
+
+// /* Invoke function in an iframe with parent.window ... it blocks onload!
+
+function execIframe(script) {
     var iframe = document.createElement('iframe');
     (iframe.frameElement || iframe).style.cssText = "display:none";
     iframe.src = "javascript:false";
     var where = document.getElementsByTagName('script')[0];
     where.parentNode.insertBefore(iframe, where);
-    var doc = iframe.contentWindow.document;
+    var doc = (iframe.contentWindow.document || iframe.contentDocument);
     doc.open().write('<body onload="' +
         // asign window.parent to iframe's context
         'var win = parent.window;' +
@@ -86,13 +86,14 @@ function startIframe(script) {
     doc.close();
 }
 
-// Load script into the iframe with current context ... it blocks onload!
+// Load script into an iframe with current context ... it blocks onload!
 
 function loadIframe2(url, id) {
     var iframe = document.createElement('iframe');
     (iframe.frameElement || iframe).style.cssText = "display:none";
     iframe.src = "javascript:false";
-    document.body.appendChild(iframe);
+    var where = document.getElementsByTagName('script')[0];
+    where.parentNode.insertBefore(iframe, where);
     var doc = (iframe.contentWindow.document || iframe.contentDocument);
     doc.open().write('<body onload="' +
         // asign window.parent to iframe's context
@@ -110,7 +111,7 @@ function loadIframe2(url, id) {
 }
 // */
 
-/* Create iframe dynamically with styles for jsFiddle */
+/* Create an iframe with styles for jsFiddle */
 
 function createFiddle(id, src, style) {
     // Keep params in iframe object
