@@ -60,6 +60,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .main aside {
+    color: black;
     background: none;
 }
 
@@ -85,10 +86,6 @@ nav a:visited {
 /* ==============
     MOBILE: Main
    ============== */
-
-.main aside {
-    color: black;
-}
 
 .main article h1 {
     font-size: 1.7em;
@@ -257,11 +254,10 @@ nav input {
    Navigation Timing
    ========================================================================== */
 #timing-result {
-    height: 7em;
+    min-height: 7em;
     margin: 0.5em 0 0;
 }
 #timing-result ul {
-    height: 7em;
     margin: 1em 0;
     list-style-type: none;
     padding-left: 10px;

@@ -47,6 +47,9 @@ var report = function (legacy) {
         }];
         var start = window.performance.timing.navigationStart;
 /*
+        for (i in legacy) {
+            window.performance.timing['legacy_' + i] = legacy[i];
+        }
         for (i in window.performance.timing) {
             t = window.performance.timing[i] - 0;
             if (t > 0) {
