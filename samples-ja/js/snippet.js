@@ -7,7 +7,7 @@ var win = parent ? parent.window : window;
 		a=function(u,f){if(!d.getElementById(f)){s=d.createElement("script");
 		s.src=u;s.async=!0;if(f){s.id=f;}e.parentNode.insertBefore(s,e);}};
 		a("//connect.facebook.net/ja_JP/all.js#xfbml=1","facebook-jssdk");
-		w._gaq=[["_setAccount","UA-20543951-1"],["_trackPageview"]];
+		w._gaq=[["_setAccount","UA-42366765-1"],["_trackPageview"]];
 		w.___gcfg={lang:"ja"};
 		a(("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js","ga");
 		a("https://apis.google.com/js/plusone.js");
