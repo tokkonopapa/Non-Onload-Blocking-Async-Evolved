@@ -1,0 +1,81 @@
+.github-repos-wrap {
+	background: none repeat scroll 0 0 #1B222B;
+	border-radius: 5px;
+	float: left;
+	font-family: "lucida grande",lucida,tahoma,helvetica,arial,sans-serif !important;
+	margin: 0 auto;
+	padding: 0;
+	width: auto;
+	color: #ccc;
+}
+.github-repos-wrap * {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.github-repos-wrap img {
+	border: none;
+}
+.github-repos-wrap a {
+	color: #99BBFF;
+}
+.github-repos-wrap a:hover {
+	color: #FFC130;
+}
+.github-repos-head,
+.github-repos-foot {
+	font-size: 13px !important;
+	line-height: 1.4 !important;
+	min-height: 32px !important;
+	overflow: hidden;
+	padding: 10px !important;
+}
+.github-repos-head {
+	border-bottom: 1px dotted #888;
+}
+.github-repos-head img {
+	float: left;
+}
+.github-repos-head p {
+	margin-top: 6px !important;
+}
+.github-repos-head a {
+	margin-left: 8px !important;
+}
+.github-repos-foot p {
+	float: left;
+	margin-top: 4px !important;
+}
+.github-repos-foot img {
+	float: right;
+}
+.github-repos-doc {
+	font-size: 12px;
+	line-height: 1.4 !important;
+}
+.github-repos-doc a {
+	font-size: 13px;
+}
+.github-repos-doc ul {
+	list-style: none outside none;
+}
+.github-repos-doc li {
+	border-bottom: 1px dotted #888;
+	padding: 8px !important;
+}
+.github-repos-octocat,
+.github-repos-logo {
+	height: 32px;
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-image: url("github.png");
+}
+.github-repos-octocat {
+	float: left;
+	width: 32px;
+	background-position: 0 0;
+}
+.github-repos-logo {
+	float: right;
+	width: 64px;
+	background-position: -32px 0;
+}

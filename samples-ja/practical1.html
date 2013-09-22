@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="ja" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="ja" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="ja" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="ja" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>Non Onload Blocking Async JS Evolved</title>
+        <script>var legacy = {}; legacy.navigationStart = new Date().getTime();</script>
+        <meta name="description" content="Load scripts in parallel with the rest of your content without blocking onload. Practical page: DOM injection pattern">
+        <meta name="viewport" content="width=device-width">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <link rel="stylesheet" href="../samples/initializr/css/normalize.min.css">
+        <link rel="stylesheet" href="../samples/initializr/css/main.css">
+        <!--[if lt IE 9]>
+            <link rel="stylesheet" href="../samples/initializr/css/ie-main.css" media="all">
+            <link rel="stylesheet" href="../samples/initializr/css/ie-print.css" media="print">
+        <![endif]-->
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/socials.css">
+        <link rel="stylesheet" href="widget/github/github.css">
+        <link rel="stylesheet" href="widget/twitter/twitter.css">
+        <link rel="stylesheet" href="widget/doticker/doticker_tiny.css">
+
+        <!--[if lt IE 9]>
+            <script>"'article aside footer header nav section time'".replace(/\w+/g,function(n){document.createElement(n)});</script>
+        <![endif]-->
+    </head>
+    <body onload="legacy.loadEventEnd = new Date().getTime(); report(legacy)">
+
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">Non onload blocking async JS evolved</h1>
+                <nav id="site-navigation">
+                    <h3 class="title menu-toggle">Menu</h3>
+                    <ul class="nav-menu">
+                        <li><a href="practical1.html" class="current_page">従来ページ</a></li>
+                        <li><a href="practical2.html">進化したページ</a></li>
+                        <li><label for="delay"><input type="checkbox" id="delay" name="delay" value="3000" onclick="javascript:addDelay(this)">&nbsp;画像の応答に3秒の遅延を付加</label></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+            <div class="primary">
+
+                <article>
+                    <header>
+                        <h1>従来ページ</h1>
+                        <div class="socials socials-header clearfix">
+                            <!-- Hatena -->
+                            <div class="social social-h social-70">
+                                <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" data-hatena-bookmark-url="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/"><!--<img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none" />--></a>
+                            </div>
+                            <!-- Twitter -->
+                            <div class="social social-h social-100">
+                                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/" data-text="tweet this entry" data-via="tokkonoPapa">Tweet</a>
+                            </div>
+                            <!-- Google plusone -->
+                            <div class="social social-h social-80">
+                                <div class="g-plusone" data-size="medium" data-href="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/"></div>
+                            </div>
+                            <!-- Pocket -->
+                            <div class="social social-h social-100">
+                                <a href="https://getpocket.com/save" class="pocket-btn" data-save-url="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/" data-pocket-count="horizontal" data-pocket-align="left">Pocket</a>
+                            </div>
+                            <!-- Facebook -->
+                            <div id="fb-root"></div>
+                            <div class="social social-h social-100">
+                                <div class="fb-like" data-href="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/" data-layout="button_count" data-send="false" data-width="120" data-show-faces="false"></div>
+                            </div>
+                        </div>
+                        <p>ソーシャル・ボタンと Disqus のスクリプトは推奨の DOM 挿入法で、またサイド・ウィジェット用のスクリプトは <code>async</code> 属性付き <code>&lt;script&gt;</code> タグで、それぞれを非同期に読み込んでいます。また jsfiddle はコンテンツ中の <code>&lt;iframe&gt;</code> に埋め込んでいます。</p>
+                    </header>
+                    <section>
+                        <h2>ナビゲーション・タイミング</h2>
+                       <p><a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html" title="W3C Editor's Draft - Navigation Timing">Navigation Timing</a> による <code>DOM ready</code> (&#8786;<code>domContentLoadedEventEnd</code>) と <code>onload</code> (&#8786;<code>loadEventEnd</code>) の観測結果は以下の通りです（対応ブラウザは、<a href="http://caniuse.com/nav-timing" title="Can I use Navigation Timing API">ブラウザの互換性</a> を参照）。</p>
+                        <div id="timing-result"></div>
+                        <p>
+                            <!--<span class="one-point"></span>-->
+                            <script src="js/delay.js"></script>
+                            <script>document.write('<img src="' + getDelay(location.href) + 'img/hand.png" width="32" height="16" title="one point" />');</script>
+                            <a href="javascript:(function(){var d=document;var s=d.createElement('script');s.type='text/javascript';s.src='http://web-tan.forum.impressrd.jp/tools/pagespeedtiming/pagesppedtiming.js?t='+(new Date()).getTime();d.getElementsByTagName('head')[0].appendChild(s)}())" title="Web担当者Forum版 ページ速度分析ツール">より詳しく分析する...</a>
+                        </p>
+                    </section>
+                    <section>
+                        <h2>このページの特徴</h2>
+                        <p>主コンテンツは、ワン・ポイントの「手」画像、jsFiddle と Disqus のコメント・システム以外、ほとんどテキストだけで構成されています。</p>
+                        <p>3rd パーティー製スクリプトによるソーシャル・ボタンやサイド・ウィジェットは、副コンテンツの位置づけです。</p>
+                        <h3>このページの問題点</h3>
+                        <p>ユーザーが最初に目にする範囲（"above the fold"）は、ごく短時間で表示されるにも関わらず <code>window.onload</code> の発火がブロックされ、速いページとは見なされません。</p>
+                    </section>
+                    <footer>
+                        <h3>改善策は？</h3>
+                        <p>"<a href="http://tokkono.cute.coocan.jp/blog/slow/index.php/xhtmlcss/best-practice-of-truly-async-js-loading/" title="プログレッシブレンダリングでUXを向上させるJS非同期読み込みのベストプラクティス | ゆっくりと…">Frame in Frame 法</a>" を使えば、3rd パーティー製スクリプトを主コンテンツから切り離し、<code>window.onload</code> をごく短時間のうちに発火させることがでるようになります。</p>
+                        <p>「<a href="practical2.html">進化したページ</a>」を試してみて下さい。</p>
+
+                        <!-- jsfiddle -->
+                        <div id="jsfiddle" style="width:100%; height:300px; margin-bottom: 1em;">
+                            <iframe src="http://jsfiddle.net/VgJsU/embedded/result,js,html,css/" allowfullscreen="allowfullscreen" frameborder="0" style="width:100%; height:300px;"></iframe>
+                        </div>
+
+                        <div class="socials socials-footer clearfix">
+                            <!-- Hatena -->
+                            <div class="social social-v social-50">
+                                <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical" data-hatena-bookmark-url="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/"><!--<img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border:none;" />--></a>
+                            </div>
+                            <!-- Twitter -->
+                            <div class="social social-v social-60">
+                                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/" data-text="Tweet this entry" data-via="tokkonoPapa" data-count="vertical">Tweet</a>
+                            </div>
+                            <!-- Google plusone -->
+                            <div class="social social-v social-50">
+                                <div class="g-plusone" data-size="tall" data-href="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/"></div>
+                            </div>
+                            <!-- Pocket -->
+                            <div class="social social-v social-60">
+                                <a href="https://getpocket.com/save" class="pocket-btn" data-save-url="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/" data-pocket-count="vertical" data-pocket-align="left">Pocket</a>
+                            </div>
+                            <!-- Facebook -->
+                            <div class="social social-v social-70">
+                                <div class="fb-like" data-href="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/" data-layout="box_count" data-send="false" data-width="70" data-show-faces="false"></div>
+                            </div>
+                        </div>
+                    </footer>
+
+                    <!-- Disqus -->
+                    <section id="comment-thread">
+                        <h2>コメント</h2>
+                        <div id="disqus_thread" data-disqus-username="tokkonopapa"></div>
+                        <noscript><p>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></p></noscript>
+                        <p><a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></p>
+                    </section>
+                </article>
+                </div>
+
+                <div class="secondary">
+                <aside>
+                    <h3>このページについて</h3>
+                    <p>このページは、3rd パーティー製スクリプトによる <code>window.onload</code> のブロッキングを検証するためのサンプルで、JavaScript ヘビーに構成されています。32 の DNS ルックアップ、120 以上の HTTP リクエスト、40 の JS ファイルと 17 の CSS ファイルを読み込み、12 の <code>iframe</code> を生成します。リソースの合計は 1.2M バイトを超えるため、ページが最終状態に至るまで数秒〜十数秒の時間を要するでしょう。<br />またメニューの「画像の応答に3秒の遅延を付加」にチェックを入れて読み込むと、応答の遅いサーバーをシミュレートできます。</p>
+                </aside>
+
+                <aside>
+                    <h3 class="widget-title">Twitter</h3>
+                    <div class="widget">
+                        <div id="mytweet"></div>
+                    </div>
+                </aside>
+
+                <aside>
+                    <h3 class="widget-title">jsdo.it</h3>
+                    <div class="widget">
+                        <div id="mydoit"></div>
+                    </div>
+                </aside>
+
+                <aside>
+                    <h3 class="widget-title">GitHub</h3>
+                    <div class="widget">
+                        <div id="github"></div>
+                    </div>
+                </aside>
+                </div>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <h3><a href="https://github.com/tokkonopapa">tokkonopapa on GitHub</a></h3>
+            </footer>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../samples/initializr/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+        <script>$(function () { legacy.domContentLoadedEventEnd = new Date().getTime(); });</script>
+        <script src="../samples/initializr/js/main.js" async defer></script>
+        <script src="../samples/js/performance.js" async defer></script>
+
+        <!-- ソーシャルボタン・スクリプトの読み込みと起動 -->
+        <script src="js/snippet.js" async defer></script>
+
+        <!-- ウィジェットの読み込みと起動 -->
+        <script src="widget/doticker/doticker_tiny.min.js"></script>
+        <script src="widget/doticker/myticker.js" async defer></script>
+        <script src="widget/twitter/twitter.js" async defer></script>
+        <script src="widget/github/github.js" async defer></script>
+
+        <!-- Disqus の読み込みと起動 -->
+        <script src="../samples/js/disqus.js" async defer></script>
+
+    </body>
+</html>

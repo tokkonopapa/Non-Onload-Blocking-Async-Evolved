@@ -1,0 +1,68 @@
+#mydoit {
+	color: #ccc;
+	line-height: 1.4 !important;
+}
+#mydoit a {
+	color: #99bbff;
+}
+#mydoit a:hover {
+	color: #ffc130;
+}
+
+/* Tiny Scrollbar */
+#mydoit-scrollbar {
+	width: auto;
+	clear: both;
+	margin: 20px 0 10px;
+}
+#mydoit-scrollbar .viewport {
+	width: auto;
+	height: 360px;
+	overflow: hidden;
+	position: relative;
+}
+#mydoit-scrollbar .overview {
+	list-style: none;
+	position: absolute;
+	left: 0; top: 0;
+}
+#mydoit-scrollbar .thumb .end,
+#mydoit-scrollbar .thumb {
+	background-color: #4d525a;
+	border-radius: 6px;
+}
+#mydoit-scrollbar .scrollbar {
+	position: relative;
+	float: right;
+	width: 15px;
+}
+#mydoit-scrollbar .track {
+	background-color: #1b222b;
+	height: 100%;
+	width: 13px;
+	position: relative;
+	padding: 0 1px;
+}
+#mydoit-scrollbar .thumb {
+	height: 20px;
+	width: 11px;
+	cursor: pointer;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+}
+#mydoit-scrollbar .thumb .end {
+	overflow: hidden;
+/*	height: 5px;*/
+	width: 13px;
+}
+#mydoit-scrollbar .disable {
+	display: none;
+}
+.noSelect {
+	user-select: none;
+	-o-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+}

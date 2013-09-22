@@ -1,0 +1,48 @@
+#mytweet {
+	background: none repeat scroll 0 0 #1B222B;
+	border-radius: 5px;
+	font-family: "lucida grande",lucida,tahoma,helvetica,arial,sans-serif !important;
+	margin: 0 auto;
+	padding: 0;
+	width: auto;
+	font-size: 12px;
+	line-height: 1.4 !important;
+	color: #ccc !important;
+}
+#mytweet .header {
+}
+#mytweet .header h3 {
+	display: inline;
+	margin-left: 8px;
+	vertical-align: middle;
+}
+#mytweet .twitter-follow-button {
+	vertical-align: middle;
+}
+#mytweet .avator {
+	width: 32px;
+	height: 32px;
+	border-radius: 4px;
+	vertical-align: middle;
+}
+#mytweet ul {
+	margin: 0;
+	padding: 0;
+}
+#mytweet li {
+	list-style: none outside none;
+	border-bottom: 1px dotted #888;
+	padding: 8px !important;
+}
+#mytweet li:last-child {
+	border-bottom: none;
+}
+#mytweet li p {
+	margin: 0;
+}
+#mytweet li a {
+	color: #99BBFF !important;
+}
+#mytweet li a:hover {
+	color: #ffc130 !important;
+}

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html lang="ja" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="ja" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="ja" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="ja" class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <title>Non Onload Blocking Async JS Evolved</title>
@@ -11,11 +11,11 @@
         <meta name="viewport" content="width=device-width">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-        <link rel="stylesheet" href="initializr/css/normalize.min.css">
-        <link rel="stylesheet" href="initializr/css/main.css">
+        <link rel="stylesheet" href="../samples/initializr/css/normalize.min.css">
+        <link rel="stylesheet" href="../samples/initializr/css/main.css">
         <!--[if lt IE 9]>
-            <link rel="stylesheet" href="initializr/css/ie-main.css" media="all">
-            <link rel="stylesheet" href="initializr/css/ie-print.css" media="print">
+            <link rel="stylesheet" href="../samples/initializr/css/ie-main.css" media="all">
+            <link rel="stylesheet" href="../samples/initializr/css/ie-print.css" media="print">
         <![endif]-->
         <link rel="stylesheet" href="css/custom.css">
         <link rel="stylesheet" href="css/socials.css">
@@ -32,9 +32,8 @@
                 <nav id="site-navigation">
                     <h3 class="title menu-toggle">Menu</h3>
                     <ul class="nav-menu">
-                        <li><a href="../index.html">Top</a></li>
-                        <li><a href="basic1.html" class="current_page">Conventional Page</a></li>
-                        <li><a href="basic2.html">Evolutionary Page</a></li>
+                        <li><a href="basic1.html" class="current_page">従来ページ</a></li>
+                        <li><a href="basic2.html">進化したページ</a></li>
                     </ul>
                 </nav>
             </header>
@@ -46,8 +45,12 @@
 
                 <article>
                     <header>
-                        <h1>Conventional Page</h1>
+                        <h1>従来ページ</h1>
                         <div class="socials socials-header clearfix">
+                            <!-- Hatena -->
+                            <div class="social social-h social-70">
+                                <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" data-hatena-bookmark-url="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/"><!--<img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none" />--></a>
+                            </div>
                             <!-- Twitter -->
                             <div class="social social-h social-100">
                                 <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/" data-text="tweet this entry" data-via="tokkonoPapa">Tweet</a>
@@ -66,27 +69,34 @@
                                 <div class="fb-like" data-href="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/" data-layout="button_count" data-send="false" data-width="120" data-show-faces="false"></div>
                             </div>
                         </div>
-                        <p>This page will load script files for social buttons at the bottom of the document through DOM injection method which is very popular for loading major 3rd party script asynchronously.</p>
+                        <p>ソーシャル・ボタンと Disqus のスクリプトは推奨の DOM 挿入法で、またサイド・ウィジェット用のスクリプトは <code>async</code> 属性付き <code>&lt;script&gt;</code> タグで、それぞれを非同期に読み込んでいます。また jsfiddle はコンテンツ中の <code>&lt;iframe&gt;</code> に埋め込んでいます。</p>
                     </header>
                     <section>
-                        <h2>Navigation Timing</h2>
-                       <p>Here's the timing of <code>DOM ready</code> (&#8786;<code>domContentLoadedEventEnd</code>) and <code>window.onload</code> (&#8786;<code>loadEventEnd</code>) mesured by <a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html" title="W3C Editor's Draft - Navigation Timing">Navigation Timing</a> (see <a href="http://caniuse.com/nav-timing" title="Can I use Navigation Timing API">browser compatibility</a>).</p>
+                        <h2>ナビゲーション・タイミング</h2>
+                       <p><a href="https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html" title="W3C Editor's Draft - Navigation Timing">Navigation Timing</a> による <code>DOM ready</code> (&#8786;<code>domContentLoadedEventEnd</code>) と <code>onload</code> (&#8786;<code>loadEventEnd</code>) の観測結果は以下の通りです（対応ブラウザは、<a href="http://caniuse.com/nav-timing" title="Can I use Navigation Timing API">ブラウザの互換性</a> を参照）。</p>
                         <div id="timing-result"></div>
                         <p>
                             <span class="one-point"></span>
-                            <a href="javascript:(function()%20{if(!window.__profiler||window.__profiler.scriptLoaded!==true){var%20d=document,h=d.getElementsByTagName(%27head%27)[0],s=d.createElement(%27script%27),l=d.createElement(%27div%27),c=function(){if(l){d.body.removeChild(l);};window.__profiler=window.__profiler||new%20__Profiler();window.__profiler.init();__profiler.scriptLoaded=true;},t=new%20Date();s.type=%27text/javascript%27;l.style.cssText=%27z-index:999;position:fixed;top:10px;left:10px;display:inline;width:auto;font-size:14px;line-height:1.5em;font-family:Helvetica,Calibri,Arial,sans-serif;text-shadow:none;padding:3px%2010px%200;background:#FFFDF2;box-shadow:0%200%200%203px%20rgba(0,0,0,.25),0%200%205px%205px%20rgba(0,0,0,.25);%20border-radius:1px%27;l.innerHTML=%27Just%20a%20moment%27;s.src=%27http://kaaes.github.com/timing/profiler.js?%27+t.getTime();s.onload=c;s.onreadystatechange=function(){if(this.readyState==%27loaded%27){c()}};d.body.appendChild(l);h.appendChild(s);}%20else%20if(window.__profiler%20instanceof%20__Profiler){window.__profiler.init()}})();">See more details...</a>
+                            <a href="javascript:(function(){var d=document;var s=d.createElement('script');s.type='text/javascript';s.src='http://web-tan.forum.impressrd.jp/tools/pagespeedtiming/pagesppedtiming.js?t='+(new Date()).getTime();d.getElementsByTagName('head')[0].appendChild(s)}())" title="Web担当者Forum版 ページ速度分析ツール">より詳しく分析する...</a>
                         </p>
                     </section>
                     <section>
-                        <h2>What's the problem ?</h2>
-                        <p>In spite of being side contents, loading those 3rd party script files will block firing <code>onload</code> event even though the main contents related files (such as html, css, javascript and images) have already arrived and rendered so that the visitors can start reading.</p>
-                        <p>The timing of <code>onload</code> is one of a good metrics especially for Google Analytics. It could be mesured to know "How long do the visitors have to wait until they can start reading your (main) contents?".</p>
-                        <p>"Blocking <code>onload</code> by 3rd party script" overcharge you for site speed and prevent to get fair rating from search engines such as Google. That's the problem.</p>
+                        <h2>このページの特徴</h2>
+                        <p>主コンテンツは、ワン・ポイントの「手」画像、jsFiddle と Disqus のコメント・システム以外、ほとんどテキストだけで構成されています。</p>
+                        <p>3rd パーティー製スクリプトによるソーシャル・ボタンやサイド・ウィジェットは、副コンテンツの位置づけです。</p>
+                        <h3>このページの問題点</h3>
+                        <p>ユーザーが最初に目にする範囲（"above the fold"）は、ごく短時間で表示されるにも関わらず <code>window.onload</code> の発火がブロックされ、速いページとは見なされません。</p>
                     </section>
                     <footer>
-                        <h3>Any solutions ?</h3>
-                        <p>Of course, spreading your good contents and earning money using those scripts are as important as getting fair rating. There is one fiddling technique to get rid of such blocking behavior. Visit to the <a href="basic2.html">Revolutionary Page</a>.</p>
+                        <h3>改善策は？</h3>
+                        <p>"<a href="http://tokkono.cute.coocan.jp/blog/slow/index.php/xhtmlcss/best-practice-of-truly-async-js-loading/" title="プログレッシブレンダリングでUXを向上させるJS非同期読み込みのベストプラクティス | ゆっくりと…">Frame in Frame 法</a>" を使えば、3rd パーティー製スクリプトを主コンテンツから切り離し、<code>window.onload</code> をごく短時間のうちに発火させることがでるようになります。</p>
+                        <p>「<a href="evolved.html">進化したページ</a>」を試してみて下さい。</p>
+
                         <div class="socials socials-footer clearfix">
+                            <!-- Hatena -->
+                            <div class="social social-v social-50">
+                                <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical" data-hatena-bookmark-url="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/"><!--<img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border:none;" />--></a>
+                            </div>
                             <!-- Twitter -->
                             <div class="social social-v social-60">
                                 <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/" data-text="Tweet this entry" data-via="tokkonoPapa" data-count="vertical">Tweet</a>
@@ -100,7 +110,7 @@
                                 <a href="https://getpocket.com/save" class="pocket-btn" data-save-url="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/" data-pocket-count="vertical" data-pocket-align="left">Pocket</a>
                             </div>
                             <!-- Facebook -->
-                            <div class="social social-v social-50">
+                            <div class="social social-v social-70">
                                 <div class="fb-like" data-href="http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/" data-layout="box_count" data-send="false" data-width="70" data-show-faces="false"></div>
                             </div>
                         </div>
@@ -135,26 +145,13 @@
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="initializr/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="../samples/initializr/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
         <script>$(function () { legacy.domContentLoadedEventEnd = new Date().getTime(); });</script>
-        <script src="initializr/js/main.js" async defer></script>
-        <script src="js/performance.js" async defer></script>
+        <script src="../samples/initializr/js/main.js" async defer></script>
+        <script src="../samples/js/performance.js" async defer></script>
 
-        <!-- Google Analytics & Social buttons -->
-        <script>
-        (function(w,d) {
-            var c,e=d.createDocumentFragment(),f=d.getElementsByTagName("script")[0],
-            a=function(a,b){if(!d.getElementById(b)){c=d.createElement("script");
-            c.src=a;c.id=b||null;c.async=true;e.appendChild(c);}};
-            w._gaq=[["_setAccount","UA-42366765-1"],["_trackPageview"]];
-            a(("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js","ga");
-            a("https://apis.google.com/js/plusone.js");
-            a("//connect.facebook.net/en_US/all.js#xfbml=1","facebook-jssdk");
-            a("https://widgets.getpocket.com/v1/j/btn.js?v=1");
-            a("//platform.twitter.com/widgets.js","twitter-wjs");
-            f.parentNode.insertBefore(e,f);
-        })(window, document);
-        </script>
+        <!-- ソーシャルボタン・スクリプトの読み込みと起動 -->
+        <script src="js/snippet.js" async defer></script>
 
     </body>
 </html>
