@@ -24,7 +24,7 @@ function addDelay(obj) {
 				if ('a' === a.nodeName.toLowerCase()) {
 					if (a.href.match(url_parser)) {
 						a.href = RegExp.$1 + RegExp.$3 + RegExp.$5;
-						if (obj.checked) a.href += '#delay=' + obj.value;
+						if (obj.checked) a.href += '?delay=' + obj.value;
 					}
 				}
 			}
@@ -37,7 +37,7 @@ function addDelay(obj) {
 function getDelay(url) {
 	if (url.match(url_parser)) {
 		url = RegExp.$1 + RegExp.$3 + RegExp.$5;
-		var wait = RegExp.$9.replace(/\D/g, '');
+		var wait = RegExp.$7.replace(/\D/g, '');
 		if (wait) {
 			return 'http://tokkono.cute.coocan.jp/blog/slow/wp-content/uploads/test/sleep.php?type=img&cache=false&wait=' + wait + '&url=' + url.replace(/[\w\-\.]+?\.html$/, '')
 		}
@@ -49,7 +49,7 @@ function getDelay(url) {
 function setDelay(url, id) {
 	id = document.getElementById(id);
 	if (id && url.match(url_parser)) {
-		var wait = RegExp.$9.replace(/\D/g, '');
+		var wait = RegExp.$7.replace(/\D/g, '');
 		id.checked = wait ? true : false;
 
 		// update href
