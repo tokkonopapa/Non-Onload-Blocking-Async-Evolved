@@ -69,11 +69,11 @@ That's it!
 
 - [GitHub Pages](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/)
 - Basic pages:
-    + [Conventional page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/basic1.html)
-    + [Evolutionary page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/basic2.html)
+    + [Conventional page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/basic1.html) ([ja](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples-ja/basic1.html))
+    + [Evolutionary page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/basic2.html) ([ja](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples-ja/basic2.html))
 - Practical pages:
-    + [Conventional page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/practical1.html)
-    + [Evolutionary page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/practical2.html)
+    + [Conventional page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/practical1.html) ([ja](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples-ja/practical1.html))
+    + [Evolutionary page](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples/practical2.html) ([ja](http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples-ja/practical2.html))
 
 ### Related references
 
