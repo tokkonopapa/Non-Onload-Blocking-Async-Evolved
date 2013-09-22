@@ -39,7 +39,7 @@ function getDelay(url) {
 		url = RegExp.$1 + RegExp.$3 + RegExp.$5;
 		var wait = RegExp.$7.replace(/\D/g, '');
 		if (wait) {
-			return 'http://tokkono.cute.coocan.jp/blog/slow/wp-content/uploads/test/sleep.php?type=img&cache=false&wait=' + wait + '&url=' + url.replace(/[\w\-\.]+?\.html$/, '')
+			return 'http://tokkono.cute.coocan.jp/demo/libs/sleep.php?type=img&cache=false&wait=' + wait + '&url=' + url.replace(/[\w\-\.]+?\.html$/, '')
 		}
 	}
 	return '';
