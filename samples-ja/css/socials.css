@@ -1,3 +1,7 @@
+.socials {
+    list-style: none;
+    padding: 0;
+}
 .socials-header {
     min-height: 40px;
     margin-left: -0.25em;
@@ -10,6 +14,7 @@
     float: left;
     position: relative;
     display: inline-block;
+    vertical-align: bottom;
 }
 .social-50 {
     width: 50px !important;
@@ -25,6 +30,9 @@
 }
 .social-100 {
     width: 100px !important;
+}
+.social-110 {
+    width: 110px !important;
 }
 .social-h {
     margin: 0.25em;
