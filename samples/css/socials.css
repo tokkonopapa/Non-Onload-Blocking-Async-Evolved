@@ -35,9 +35,11 @@
     width: 110px !important;
 }
 .social-h {
+    height: 32px;
     margin: 0.25em;
 }
 .social-v {
+    height: 72px;
     margin: 1em;
 }
 a.hatena-bookmark-button,
