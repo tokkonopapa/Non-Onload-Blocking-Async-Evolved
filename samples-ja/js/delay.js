@@ -36,10 +36,11 @@ function addDelay(obj) {
 /* Get query string from the url */
 function getDelay(url) {
 	if (url.match(url_parser)) {
-		url = RegExp.$1 + RegExp.$3 + RegExp.$5;
+//		url = RegExp.$1 + RegExp.$3 + RegExp.$5;
 		var wait = RegExp.$7.replace(/\D/g, '');
 		if (wait) {
-			return 'http://tokkono.cute.coocan.jp/demo/libs/sleep.php?type=img&cache=false&wait=' + wait + '&url=' + url.replace(/[\w\-\.]+?\.html$/, '')
+//			return 'http://tokkono.cute.coocan.jp/demo/libs/sleep.php?type=img&cache=false&wait=' + wait + '&url=' + url.replace(/[\w\-\.]+?\.html$/, '');
+			return 'http://tokkono.cute.coocan.jp/demo/libs/sleep.php?type=img&cache=false&wait=' + wait + '&url=http://tokkonopapa.github.io/Non-Onload-Blocking-Async-Evolved/samples-ja/';
 		}
 	}
 	return '';
