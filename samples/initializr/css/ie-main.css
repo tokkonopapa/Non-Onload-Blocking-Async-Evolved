@@ -37,6 +37,18 @@
     }
 /*}*/
 
+/*@media screen and (min-width: 600px) {*/
+     nav a {
+        float: left;
+    }
+    .menu-toggle {
+        display: none;
+    }
+    #site-navigation ul.nav-menu {
+        display: block !important;
+    }
+/*}*/
+
 /*@media only screen and (min-width: 768px) {*/
 
 /* ====================
@@ -59,7 +71,7 @@
     }*/
 
     nav {
-        float: right;
+        /*float: right;*/
         width: auto; /*38%;*/
     }
 
