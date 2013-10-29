@@ -9,10 +9,10 @@
    ==================== */
 
     nav a {
-        /*float: left;*/
-        /*width: 27%;*/
+        float: none;
+        width: auto;
         margin: 0 1.7%;
-        padding: 25px 2%;
+        padding: 15px 1% 10px 1%;
         margin-bottom: 0;
     }
 
@@ -87,5 +87,23 @@
     .main aside {
         float: right;
         width: 28%;
+        border-left: 1px solid #aaa;
+        border-right: 1px solid #aaa;
+        border-bottom: 1px solid #aaa;
+    }
+
+    .primary {
+        float: left;
+        width: 60%;
+    }
+    .primary article {
+        width: 100%;
+    }
+    .secondary {
+        float: right;
+        width: 40%;
+    }
+    .secondary aside {
+        width: 75%;
     }
 /*}*/
