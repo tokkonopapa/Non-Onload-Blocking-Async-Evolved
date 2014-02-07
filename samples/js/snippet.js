@@ -8,6 +8,7 @@ var win = parent ? parent.window : window;
                 if (!doc.getElementById(id)) {
                     js = doc.createElement(script);
                     js.src = url;
+                    js.async = true;
                     id && (js.id = id);
                     fjs.parentNode.insertBefore(js, fjs);
                 }
