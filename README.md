@@ -15,6 +15,7 @@ Prepare a small snippet like [Nicolas Gallagher's code](https://gist.github.com/
             if (!doc.getElementById(id)) {
                 js = doc.createElement(script);
                 js.src = url;
+                js.async = true;
                 id && (js.id = id);
                 fjs.parentNode.insertBefore(js, fjs);
             }
