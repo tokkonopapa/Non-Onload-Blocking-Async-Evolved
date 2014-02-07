@@ -55,3 +55,7 @@ iframe[name*=" oauth2relay"] {
     border-style: none;
     display: none;
 }
+
+.fb-like + * {
+    vertical-align: top;
+}
