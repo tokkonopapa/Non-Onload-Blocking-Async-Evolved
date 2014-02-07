@@ -56,6 +56,6 @@ iframe[name*=" oauth2relay"] {
     display: none;
 }
 
-.social .fb_iframe_widget span
+.social .fb_iframe_widget span {
     vertical-align: top !important;
 }
