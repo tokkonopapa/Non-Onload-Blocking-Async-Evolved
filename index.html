@@ -76,7 +76,7 @@ try {
 }
 </pre>
 
-<p>And we can use this system, which name is "<strong>frame-in-frame</strong>", at the client side as <a href="http://jsbin.com/axibow/10/edit" title="fif test - JS Bin">his JS Bin</a> shows like this:</p>
+<p>And we can use this system, which name is "<strong>frame-in-frame</strong>", at the client side as he showed at <a href="http://jsbin.com/axibow/10/edit" title="fif test - JS Bin">JS Bin</a> (or <a href="http://jsfiddle.net/tokkonoPapa/GZYuH/" title="Frame in Frame - JSFiddle">this fiddle</a>):</p>
 
 <pre class="prettyprint lang-js linenums" id="fif-snippet">
 (function (url) {
@@ -201,9 +201,9 @@ doc.close();
 
 <p>The key point here is creating a separate file like snippet.js. It means that a page needs to spend additional HTTP request. It also take some additional cost for creating iframe.</p>
 
-<p>And at somethime especially in case of empty cache, a browser loses its non onload blocking behavior. I do not know the reason and solution yet.</p>
+<p>And at sometime especially in case of empty cache, a browser loses its non onload blocking behavior. I do not know the reason and solution yet.</p>
 
-<p>Anyway, I think this kind of technique should be applied after some efforts to <a href="http://developer.yahoo.com/performance/rules.html#num_http" title="Best Practices for Speeding Up Your Web Site">make Fewer HTTP Requests</a>.</p>
+<p>Anyway, I think this kind of technique should be applied after some efforts to <a href="http://developer.yahoo.com/performance/rules.html#num_http" title="Best Practices for Speeding Up Your Web Site">make fewer HTTP requests</a>.</p>
 
 <h3>
 <a name="rivisiting-onload" class="anchor" href="#rivisiting-onload"><span class="octicon octicon-link"></span></a>Rivisiting onload</h3>
