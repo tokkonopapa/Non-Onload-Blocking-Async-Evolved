@@ -79,6 +79,7 @@ try {
 <p>And we can use this system, which name is "<strong>frame-in-frame</strong>", at the client side as he showed at <a href="http://jsbin.com/axibow/10/edit" title="fif test - JS Bin">JS Bin</a> (or <a href="http://jsfiddle.net/tokkonoPapa/GZYuH/" title="Frame in Frame - JSFiddle">this fiddle</a>):</p>
 
 <pre class="prettyprint lang-js linenums" id="fif-snippet">
+// frame-in-frame
 (function (url) {
     var iframe = document.createElement('iframe');
     (iframe.frameElement || iframe).style.cssText = 'display:none';
@@ -108,6 +109,7 @@ window.fbAsyncInit = function() {
 <p>I found that we can use similar system at client side. Let's pick up Nicolas Gallagher's <a href="https://gist.github.com/necolas/1025811" title="Optimised async loading of cross-domain scripts">snippet.js</a>.</p>
 
 <pre class="prettyprint lang-js linenums">
+// snippet.js
 (function (doc, script) {
     var js,
         fjs = doc.getElementsByTagName(script)[0],
@@ -116,7 +118,7 @@ window.fbAsyncInit = function() {
             js = doc.createElement(script);
             js.src = url;
             js.async = true;
-            id && (js.id = id);
+            id &amp;&amp; (js.id = id);
             fjs.parentNode.insertBefore(js, fjs);
         };
 
@@ -149,12 +151,11 @@ var win = parent ? parent.window : window;
     _gaq.push(['_setAccount', 'UA-XXXXX-X']);
     _gaq.push(['_trackPageview']);
 
-    // Call snippet.js through "frame-in-frame" system
     (function (url) {
         setTimeout(function () {
             // frame-in-frame here
         }, 0);
-    }('snippet.js'));
+    }('snippet.js')); // load snippet.js through "frame-in-frame"
 &lt;/script&gt;
 </pre>
 
